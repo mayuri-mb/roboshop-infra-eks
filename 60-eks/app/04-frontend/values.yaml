@@ -3,4 +3,4 @@ deployment:
   imageName: "joindevops/frontend"
   imageVersion: "1.4.0"
 ingress:
-  host: "roboshop-dev.daws88s.online"
+  host: "roboshop-dev.daws-88s.online"
