@@ -53,4 +53,28 @@ spec:
         envFrom:
         - configMapRef:
             name: frontend
-# ---
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app1
+  annotations:
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:us-east-1:911701613683:certificate/f423544c-a816-486b-a9de-7e24b168c6e2'
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/tags: Environment=dev,Project=roboshop
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/group.name: roboshop
+spec:
+  ingressClassName: alb
+  rules:
+  - host: {{ Values.ingress.host }}
+    http:
+      paths:
+      - path: "/"
+        pathType: Prefix 
+        backend:  
+          service:
+            name: app1
+            port: 
+              number: 80    
