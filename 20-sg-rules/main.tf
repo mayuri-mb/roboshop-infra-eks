@@ -146,6 +146,16 @@ resource "aws_security_group_rule" "jenkins_public" {
   security_group_id = local.jenkins_sg_id
 }
 
+resource "aws_security_group_rule" "jenkins_ssh" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp" # all traffic
+  # VPC CIDR
+  cidr_blocks = ["0.0.0.0/0"]
+  security_group_id = local.jenkins_sg_id
+}
+
 resource "aws_security_group_rule" "jenkins_agent_ssh" {
   type              = "ingress"
   from_port         = 22
