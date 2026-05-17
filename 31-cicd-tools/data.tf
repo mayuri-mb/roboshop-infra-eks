@@ -39,7 +39,7 @@ data "aws_ami" "sonarqube" {
 }
 
 data "aws_ssm_parameter" "public_subnet_ids" {
-    name = "/${var.project}/${var.environment}/public_subnet_ids"
+    name = "/${var.project}/${var.environment}/public_subnet_id"
 }
 
 data "aws_ssm_parameter" "jenkins_sg_id" {
